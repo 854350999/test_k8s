@@ -1,0 +1,59 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: grpc-test
+#  labels:
+#    app: grpc-test
+#spec:
+##  replicas: 3
+#  template:
+#    metadata:
+#      name: grpc-test
+#      labels:
+#        app: grpc-test
+#    spec:
+#      imagePullSecrets:
+#        - name: regcred
+#      containers:
+#        - name: grpc-test
+#          image: 192.168.50.50:5000/my-app:0.0.1-SNAPSHOT
+#          imagePullPolicy: IfNotPresent
+#          ports:
+#            - containerPort: 50049
+#          resources:
+#            limits:
+#              cpu: 1000m
+#              memory: 2000Mi
+#            requests:
+#              cpu: 100m
+#              memory: 200Mi
+#      restartPolicy: Always
+#  selector:
+#    matchLabels:
+#      app: grpc-test
+#
+#---
+#
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: grpc-service
+#spec:
+#  selector:
+#    app: grpc-service
+#  ports:
+#    - port: 50049
+#      targetPort: 50049
+#  type: NodePort
+apiVersion: v1
+kind: Pod
+metadata:
+  name: grpc-demo
+  labels:
+    app: grpc-demo
+spec:
+  containers:
+    - name: grpc-demo
+      image: debian
+      imagePullPolicy: IfNotPresent
+  restartPolicy: OnFailure

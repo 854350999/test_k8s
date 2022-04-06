@@ -1,0 +1,19 @@
+version: "3"
+networks:
+  network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 177.17.0.0/16
+services:
+  app:
+    restart: always
+    build: .
+    command: "python3 helloworld_grpc_server.py"
+    volumes:
+      - .:/grpc_learn
+    ports:
+      - "50051:50051"
+    container_name: hello_world_service
+    expose:
+      - 50051
