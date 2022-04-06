@@ -5,13 +5,13 @@ FROM python:3.8
 ENV PYTHONUNBUFFERED 1
 
 # 创建 code 文件夹并将其设置为工作目录
-RUN mkdir /grpc_learn
-WORKDIR /grpc_learn
+RUN mkdir /test_k8s
+WORKDIR /test_k8s
 # 更新 pip
 RUN pip install pip -U
 # 将 requirements.txt 复制到容器的 code 目录
-ADD requirements.txt /grpc_learn/
+ADD requirements.txt /test_k8s/
 # 安装库
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 # 将当前目录复制到容器的 code 目录
-ADD . /grpc_learn/
+ADD . /test_k8s/
